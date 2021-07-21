@@ -1,0 +1,37 @@
+<header>
+  <img [src]="'/assets/avatars/' + heroe?.pathLabel" alt="" class="heroe clickable">
+  <div class="time">
+    <p class="font-baloo" *ngIf="time.minutes && time.minutes !== 0">{{time.minutes}}m</p>
+    <p class="font-baloo">{{time.seconds}}s</p>
+  </div>
+</header>
+<section class="plate-game">
+  <ng-container [ngTemplateOutlet]="tryLine" *ngFor="let try of tries; let i =index" [ngTemplateOutletContext]="{index: i}"></ng-container>
+</section>
+<section class="plate-game">
+  <div class="colors-list">
+    <div *ngFor="let color of colorsList"
+         (click)="selectColor(color)"
+         class="item-color"
+         [ngStyle]="{background: color}"></div>
+  </div>
+  <div class="selected-color item-color" [ngStyle]="{background: selectedColor}"></div>
+</section>
+
+<ng-template #tryLine let-index='index'>
+  <div class="try-line">
+    <p class="font-baloo try-index">{{index + 1}}</p>
+    <div class="suit-items">
+      <div *ngFor="let color of tries[index].colorsItem; let itemIndex = index"
+           (click)="setColor(index, itemIndex)"
+           class="item-color"
+           [ngStyle]="{background: color}"></div>
+    </div>
+    <div *ngIf="tries[index].results.length" class="results">
+      <div *ngFor="let result of tries[index].results" class="item-result" [ngClass]="result"></div>
+    </div>
+    <div *ngIf="!tries[index].results.length" class="submit-suit">
+      <p *ngIf="index === currentTryTime" (click)="compareSuits()" class="font-baloo clickable">Valider</p>
+    </div>
+  </div>
+</ng-template>

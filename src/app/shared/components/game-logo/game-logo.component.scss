@@ -1,0 +1,64 @@
+@import "../../../../theme/colors-variables";
+
+:host{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1.5s;
+  transform: translateY(110px) scale(2.4);
+
+  &.initial-scale {
+    transform: translateY(10px) scale(1);
+  }
+
+  p {
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+    user-select: none;
+  }
+
+  .marvel {
+    font-family: marvel, 'sans-serif';
+    background: $red;
+    color: white;
+    padding: 10px 3px 0px ;
+    font-size: 3rem;
+    line-height: 2rem;
+  }
+
+  .mind {
+    font-family: baloo_2, 'sans-serif';
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    font-weight: bold;
+    background-image: linear-gradient(90deg, rgba(62,162,109,1) 0%, rgba(34,108,190,1) 20%, rgba(255,72,0,1) 40%, rgba(62,162,109,1) 60%, rgba(34,108,190,1) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &.animate {
+      animation: moveBg 3s linear infinite;
+    }
+  }
+
+  @keyframes moveBg {
+    0% {
+      background-position-x: 0px;
+    }
+    50% {
+      background-position-x: 100px;
+    }
+    100% {
+      background-position-x: 0px;
+    }
+
+  }
+}
