@@ -23,30 +23,27 @@ export class GameService {
     this.secretSuit = secretSuit;
   }
   public compareSuit(suit: string[]): string[] {
-    const greens: string[] = [];
-    const oranges: string[] = [];
+    const result: string[] = [];
     const cloneSecret = [...this.secretSuit];
     const cloneSuit = [...suit];
+    // Get good and same place
     for (const [iterator, color] of cloneSuit.entries()) {
       if (color === cloneSecret[iterator]) {
-        greens.push('green');
+        result.push('green');
         cloneSuit[iterator] = '#fff';
         cloneSecret[iterator] = '#000';
       }
     }
+    // Get present but not same place
     for (const [indexSuitItem, color] of cloneSuit.entries()) {
       if (cloneSecret.includes(color)) {
         const indexSecretItem = cloneSecret.findIndex(secretColor => secretColor === color);
-        if (indexSecretItem === indexSuitItem) {
-          greens.push('green');
-        } else {
-          oranges.push('orange');
-        }
+        result.push('orange');
         cloneSecret[indexSecretItem] = '#000';
         cloneSuit[indexSuitItem] = '#fff';
       }
     }
-    return [...greens, ...oranges].length ? [...greens, ...oranges] : ['no match'];
+    return result.length ? result : ['no match'];
   }
 
 }
