@@ -22,7 +22,28 @@ p.label {
 }
 
 .start-button {
+  --angle: 0deg;
   text-align: center;
   font-size: 2rem;
   margin-top: 100px;
+  width: fit-content;
+  padding: 0.5rem 2rem;
+  border: 3px solid;
+  border-image: linear-gradient(var(--angle), rgba(62,162,109,1), rgba(34,108,190,1), rgba(255,72,0,1), rgba(62,162,109,1), rgba(34,108,190,1)) 1;
+}
+
+.start-button:hover {
+  animation: 4s rotateBorder linear both;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  to {
+    --angle: 360deg;
+  }
 }
